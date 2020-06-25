@@ -1,0 +1,29 @@
+{
+  "name": "graphql_react_apollo",
+  "version": "1.0.0",
+  "description": "SpaceX launches TM",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gnola/graphql_react_apollo.git"
+  },
+  "author": "G Nola",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gnola/graphql_react_apollo/issues"
+  },
+  "homepage": "https://github.com/Gnola/graphql_react_apollo#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^15.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
