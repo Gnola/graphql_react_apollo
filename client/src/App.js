@@ -1,15 +1,22 @@
+// npm i apollo-boost, react-apollo, react-router-dom
+
+// DEPENDENCIES //
 import React from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
+
+// COMPONENTS & ASSETS //
 import Launches from './components/Launches';
 import Launch from './components/Launch';
-import './App.css';
 import logo from './logo.png'
+import './App.css';
 
+// Set CLIENT to ApolloClient at GRAPHQL URI --> Hit GraphQL Endpoint
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql'
 })
+// Then wrap everything below in ApolloProvider that uses Client
 
 function App() {
   return (
@@ -17,12 +24,13 @@ function App() {
       <Router>
         <div className="container">
           <img src={logo} alt='SpaceX' style={{ width: 300, display: 'block', margin: 'auto' }} />
-          <Route exact path='/' component={Launches} />
-          <Route exact path='/launch/:flight_number' component={Launch} />
+          <Route exact path='/' component={Launches} />  
+          <Route exact path='/launch/:flight_number' component={Launch} /> 
         </div>
       </Router>
     </ApolloProvider>
   );
 }
+
 
 export default App;

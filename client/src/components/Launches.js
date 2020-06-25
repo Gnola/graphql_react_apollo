@@ -1,9 +1,15 @@
+// npm i graphql-tag, react-apollo
+
+// DEPENDENCIES //
 import React, { Component, Fragment } from 'react';
-import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import gql from 'graphql-tag'; // from graphql
+import { Query } from 'react-apollo'; // Component takes in prop of query and arrow function
+
+// COMPONENTS & ASSETS //
 import LaunchItem from './LaunchItem'
 import MissionKey from './MissionKey'
 
+// QUERY made with GQL --> Define query schema (from schema.js) and data wanted
 const LAUNCHES_QUERY = gql`
 query LaunchesQuery {
     launches {
@@ -14,11 +20,12 @@ query LaunchesQuery {
     }
   }
 `;
+// Gets ALL Launches and their data
 
 export class Launches extends Component {
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <h1 className="display-5 my-3">Launches</h1>
         <MissionKey />
         <Query query={LAUNCHES_QUERY}>
@@ -36,7 +43,7 @@ export class Launches extends Component {
             }
           }
         </Query>
-      </React.Fragment>
+      </Fragment>
     )
   }
 }

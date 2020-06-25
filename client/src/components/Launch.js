@@ -1,9 +1,14 @@
+// npm i graphql-tag, react-apollo, react-router-dom, classnames
+
+// DEPENDENCIES //
 import React, { Component, Fragment } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
+
+// QUERY made with GQL --> Define query schema (from schema.js) and data wanted
 const LAUNCH_QUERY = gql`
 query LaunchQuery($flight_number: Int!){
   launch(flight_number:$flight_number){
@@ -20,11 +25,14 @@ query LaunchQuery($flight_number: Int!){
   }
   }
 `;
+// Gets a Single Launch based on Flight Number and retrieves its data
 
 export class Launch extends Component {
   render() {
-    let { flight_number } = this.props.match.params;
-    flight_number = parseInt(flight_number);
+    let { flight_number } = this.props.match.params; // pull {Flight Number} out of params that are in props
+    flight_number = parseInt(flight_number); // and set it to be an Int
+    console.log(this.props);
+    
     return (
       <Fragment>
         <Query query={LAUNCH_QUERY} variables={{flight_number}}>
@@ -32,13 +40,23 @@ export class Launch extends Component {
             ({ loading, error, data}) => {
               if (loading) return <h4>Loading...</h4>
               if (error) console.log(error);
+              // Destructure variables to display it
+              const { 
+                mission_name, 
+                flight_number, 
+                launch_year, 
+                launch_success, 
+                rocket: {
+                  rocket_id, 
+                  rocket_name, 
+                  rocket_type
+                }
+              } = data.launch // from data from launch query
 
-              const { mission_name, flight_number, launch_year, launch_success, rocket: {rocket_id, rocket_name, rocket_type}} = data.launch
               return (
               <div>
                 <h1 className="display-4 my-3"> 
-                 <span className="text-dark"> Mission: </span>{' '}
-                    {mission_name}
+                 <span className="text-dark"> Mission: </span>{' '} {mission_name}
                 </h1>
                 <h4 className="mb-3">Launch Details</h4>
                 <ul className="list-group">
